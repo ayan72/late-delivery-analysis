@@ -32,5 +32,12 @@ WHERE orders >= 250
 ORDER BY on_time_rate ASC, orders DESC
 LIMIT 10;
 
+-- identifying significant transit delays 
+SELECT *
+FROM v_lane_performance
+WHERE orders >= 300
+  AND p50_transit_days > p50_handling_days * 1.5
+ORDER BY (p50_transit_days - p50_handling_days) DESC
+LIMIT 20;
 
 
