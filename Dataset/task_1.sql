@@ -44,7 +44,7 @@ WHERE o.order_status = 'delivered'
  AND o.order_delivered_carrier_date >= o.order_approved_at
  AND o.order_delivered_customer_date >= o.order_delivered_carrier_date;
 
-
+ 
 --sanity checks
 SELECT COUNT(*) AS total_rows
 FROM v_delivery_facts_plus;
@@ -71,4 +71,5 @@ SELECT
   ROUND(AVG(transit_days),2) AS avg_transit_days,
   ROUND(AVG(lead_time_days),2) AS avg_lead_time_days
 FROM v_delivery_facts_plus;
+
 
