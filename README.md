@@ -76,3 +76,47 @@ Highlighted combinations with:
 These form the “call-first” list for daily operations reviews.
 
 ---
+
+## Key Insights
+
+- **Lane SP → RJ** is *handling-driven* — 62% of late orders are due to seller-side delays before shipment.  
+- **Lane MG → BA** is *transit-driven* — 70% of late orders are caused by courier-side transit delays.  
+- **Seller S123 on SP → BA** has a **28% late rate**; median handling time is **2.6 days** vs **1.1 days transit**, indicating a seller-side process issue.
+
+---
+
+## Outcomes
+
+This project demonstrates how **SQL-based analytics** can translate complex delivery data into **actionable insights** for operations teams.  
+It showcases the ability to:
+
+- Structure end-to-end analytical workflows using SQL.  
+- Integrate clean data outputs seamlessly with **Power BI** for visualization.  
+- Communicate operational findings effectively through **data-driven storytelling**.
+
+## Next Steps
+
+### 1. Build the Power BI Dashboard
+Leverage the SQL outputs created in this project to design a Power BI dashboard that transforms the analysis into clear, visual insights for business and operations teams.
+
+This dashboard will enable stakeholders to explore results interactively and identify performance bottlenecks across the delivery network.
+
+---
+
+### 2. Prepare an In-Depth Analytical Report
+Once the Power BI dashboard is complete, create a detailed report summarizing the key findings and insights derived from the analysis.
+
+**Report Deliverables:**
+- **Executive Summary:** Overall delivery performance and late rate overview.  
+- **Root Cause Analysis:** Breakdown of lateness by handling vs. transit drivers.  
+- **Regional and Seller Trends:** Insights into state-to-state performance and slow-handling sellers.  
+- **Operational Recommendations:**  
+  - Coach specific sellers with high handling times.  
+  - Address courier routes with consistent transit delays.  
+  - Adjust SLAs or routing for high-risk lanes.  
+
+---
+
+### 4. Future Enhancements
+- Incorporate additional data sources such as courier performance metrics or weather conditions.  
+- Add predictive analytics to forecast potential late deliveries using historical patterns.  
