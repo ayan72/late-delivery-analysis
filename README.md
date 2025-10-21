@@ -16,3 +16,63 @@ The analysis is fully implemented in **SQL**, organized into sequential steps, a
 - Pinpoint high-impact seller × lane combinations responsible for most delays.  
 
 ---
+
+## Data Sources
+The analysis combines data from multiple relational tables:
+- `olist_orders` – order-level information and timestamps  
+- `olist_order_items` – mapping of items to sellers  
+- `olist_customers` – customer details and regions  
+- `olist_sellers` – seller details and locations  
+
+These tables were merged to form a consistent base for performance analytics.
+
+---
+
+## Project Structure
+
+### Task 1 — Delivery Facts Base
+Created a view `v_delivery_facts_plus` with one row per order × seller, containing:
+- Key timestamps (approval, shipment, delivery, promised date)  
+- Calculated durations (handling days, transit days, lead time, lateness)  
+
+This base standardizes all downstream analysis.
+
+---
+
+### Task 2 — Lane Performance
+Analyzed performance by **seller_state → customer_state** lane to identify the slowest routes.  
+Computed:
+- On-time rate and average lead time  
+- Median handling and transit times for diagnosis  
+- Volume thresholds to exclude low-traffic lanes  
+
+Created a reusable view `v_lane_performance` for continuous monitoring.
+
+---
+
+### Task 3 — Slow-Handling Sellers
+Ranked sellers by their median handling time.  
+Identified those consistently delaying before shipment and compared against median transit times to distinguish seller vs courier-related issues.
+
+---
+
+### Task 4 — Diagnose Lateness (Handling vs Transit)
+Used lane-specific 75th percentile thresholds to determine whether each late delivery was:
+- **Handling-driven:** seller delay before handoff  
+- **Transit-driven:** courier delay during transport  
+
+Aggregated results into a `primary_driver` classification for each lane.  
+This provides a clear operational recommendation — whether to coach sellers or coordinate with logistics partners.
+
+---
+
+### Task 5 — Hot Spots (Seller × Lane Pairs)
+Focused on the highest-impact problem areas by analyzing seller × lane pairs.  
+Highlighted combinations with:
+- High order volume  
+- High late rate  
+- Median handling and transit times for context  
+
+These form the “call-first” list for daily operations reviews.
+
+---
