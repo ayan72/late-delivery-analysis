@@ -6,3 +6,13 @@ The objective is to determine whether delays originate from seller handling or c
 
 The analysis is fully implemented in **SQL**, organized into sequential steps, and designed for visualization in **Power BI**.
 
+---
+
+## Objectives
+- Build a unified and reusable “delivery facts” base table.  
+- Evaluate delivery performance by route.  
+- Identify sellers responsible for pre-shipment delays.  
+- Diagnose whether lateness is handling or transit driven.  
+- Pinpoint high-impact seller × lane combinations responsible for most delays.  
+
+---
