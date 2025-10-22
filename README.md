@@ -43,7 +43,7 @@ This helps teams focus on targeted interventions and SLA optimization.
 ## 4. Skills
 
 ### SQL
--CTEs, joins, window functions, and views
+- CTEs, joins, window functions, and views
 
 
 ### ETL
@@ -64,7 +64,7 @@ This helps teams focus on targeted interventions and SLA optimization.
 - **Seller S123 on SP → BA** has a **28% late rate**; median handling time is **2.6 days** vs **1.1 days transit**, indicating a seller-side process issue.
 
 
-## Recommendations
+### Recommendations
 
 -Coach sellers with high handling times to improve pre-shipment processes.
 
