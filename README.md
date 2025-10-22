@@ -66,11 +66,11 @@ This helps teams focus on targeted interventions and SLA optimization.
 
 ### Recommendations
 
--Coach sellers with high handling times to improve pre-shipment processes.
+- Coach sellers with high handling times to improve pre-shipment processes.
 
--Coordinate with logistics teams on lanes with frequent transit delays.
+- Coordinate with logistics teams on lanes with frequent transit delays.
 
--Prioritize top seller × lane hotspots for immediate operational review.
+- Prioritize top seller × lane hotspots for immediate operational review.
 
 ---
 
@@ -83,7 +83,7 @@ This dashboard will enable stakeholders to explore results interactively and ide
 
 ---
 
-### 2. Prepare an In-Depth Analytical Report
+### Prepare an In-Depth Analytical Report
 Once the Power BI dashboard is complete, create a detailed report summarizing the key findings and insights derived from the analysis.
 
 **Report Deliverables:**
@@ -97,6 +97,6 @@ Once the Power BI dashboard is complete, create a detailed report summarizing th
 
 ---
 
-### 4. Future Enhancements
+### Future Enhancements
 - Incorporate additional data sources such as courier performance metrics or weather conditions.  
 - Add predictive analytics to forecast potential late deliveries using historical patterns.  
