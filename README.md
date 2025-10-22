@@ -1,102 +1,82 @@
-# Delivery Performance Analysis — SQL Case Study
+# SQL Root Cause Analysis - Delivery Performance 
 
-## Overview
-This project analyzes end-to-end delivery performance across multiple lanes (seller state → customer state) to identify the root causes of late deliveries in an e-commerce network.  
-The objective is to determine whether delays originate from seller handling or courier transit, and to provide operations teams with actionable insights for improvement.
+## 1. Executive Summary
 
-The analysis is fully implemented in **SQL**, organized into sequential steps, and designed for visualization in **Power BI**.
-
----
-
-## Objectives
-- Build a unified and reusable “delivery facts” base table.  
-- Evaluate delivery performance by route.  
-- Identify sellers responsible for pre-shipment delays.  
-- Diagnose whether lateness is handling or transit driven.  
-- Pinpoint high-impact seller × lane combinations responsible for most delays.  
+This project analyzes e-commerce delivery performance across multiple lanes (seller state → customer state) to uncover the root causes of late deliveries.
+Using SQL, the analysis identifies whether delays stem from seller handling or courier transit and provides actionable insights for operations improvement.
+The SQL outputs are designed for Power BI visualization to support real-time performance tracking.
 
 ---
 
-## Data Sources
-The analysis combines data from multiple relational tables:
-- `olist_orders` – order-level information and timestamps  
-- `olist_order_items` – mapping of items to sellers  
-- `olist_customers` – customer details and regions  
-- `olist_sellers` – seller details and locations  
+## 2. Business Problem
 
-These tables were merged to form a consistent base for performance analytics.
+Late deliveries negatively impact customer satisfaction and operational efficiency.
+The challenge is to determine where delays occur before shipment (handling) or during transit, and to identify which sellers or routes contribute most to late orders.
+This helps teams focus on targeted interventions and SLA optimization.
 
 ---
 
-## Project Structure
+## 3. Methodology
 
-### Task 1 — Delivery Facts Base
-Created a view `v_delivery_facts_plus` with one row per order × seller, containing:
-- Key timestamps (approval, shipment, delivery, promised date)  
-- Calculated durations (handling days, transit days, lead time, lateness)  
+### Data Preparation
 
-This base standardizes all downstream analysis.
+- Combined order, item, seller, and customer data into a unified base table (v_delivery_facts_plus).
 
----
+### Lane Analysis
 
-### Task 2 — Lane Performance
-Analyzed performance by **seller_state → customer_state** lane to identify the slowest routes.  
-Computed:
-- On-time rate and average lead time  
-- Median handling and transit times for diagnosis  
-- Volume thresholds to exclude low-traffic lanes  
+- Calculated on-time rate, handling, and transit times per lane to identify slow routes.
 
-Created a reusable view `v_lane_performance` for continuous monitoring.
+### Seller Diagnosis
 
----
+- Ranked sellers by median handling time to isolate pre-shipment delays.
 
-### Task 3 — Slow-Handling Sellers
-Ranked sellers by their median handling time.  
-Identified those consistently delaying before shipment and compared against median transit times to distinguish seller vs courier-related issues.
+### Root Cause Classification
+
+- Used lane-specific thresholds to tag each delay as handling-driven or transit-driven.
+
+### Hotspot Detection
+
+- Highlighted high-impact seller × lane combinations for operational focus.
 
 ---
 
-### Task 4 — Diagnose Lateness (Handling vs Transit)
-Used lane-specific 75th percentile thresholds to determine whether each late delivery was:
-- **Handling-driven:** seller delay before handoff  
-- **Transit-driven:** courier delay during transport  
+## 4. Skills
 
-Aggregated results into a `primary_driver` classification for each lane.  
-This provides a clear operational recommendation — whether to coach sellers or coordinate with logistics partners.
+### SQL
+-CTEs, joins, window functions, and views
 
----
 
-### Task 5 — Hot Spots (Seller × Lane Pairs)
-Focused on the highest-impact problem areas by analyzing seller × lane pairs.  
-Highlighted combinations with:
-- High order volume  
-- High late rate  
-- Median handling and transit times for context  
+### ETL
 
-These form the “call-first” list for daily operations reviews.
+- Combined multiple raw tables through SQL transformations to create a clean, analytics-ready dataset.
+
+
+### Root Cause Analysis
+
+- Used SQL-driven metrics to isolate whether lateness was handling or transit driven for each lane.
 
 ---
 
-## Key Insights
+## 5. Results and Business Recommendations
 
 - **Lane SP → RJ** is *handling-driven* — 62% of late orders are due to seller-side delays before shipment.  
 - **Lane MG → BA** is *transit-driven* — 70% of late orders are caused by courier-side transit delays.  
 - **Seller S123 on SP → BA** has a **28% late rate**; median handling time is **2.6 days** vs **1.1 days transit**, indicating a seller-side process issue.
 
+
+## Recommendations
+
+-Coach sellers with high handling times to improve pre-shipment processes.
+
+-Coordinate with logistics teams on lanes with frequent transit delays.
+
+-Prioritize top seller × lane hotspots for immediate operational review.
+
 ---
 
-## Outcomes
+## 6. Next Steps
 
-This project demonstrates how **SQL-based analytics** can translate complex delivery data into **actionable insights** for operations teams.  
-It showcases the ability to:
-
-- Structure end-to-end analytical workflows using SQL.  
-- Integrate clean data outputs seamlessly with **Power BI** for visualization.  
-- Communicate operational findings effectively through **data-driven storytelling**.
-
-## Next Steps
-
-### 1. Build the Power BI Dashboard
+### Build the Power BI Dashboard
 Leverage the SQL outputs created in this project to design a Power BI dashboard that transforms the analysis into clear, visual insights for business and operations teams.
 
 This dashboard will enable stakeholders to explore results interactively and identify performance bottlenecks across the delivery network.
